@@ -1,0 +1,17 @@
+{%extends "boost/base.html"%}
+{%load static%}
+
+
+{%block body%}
+
+{%for service  in services%}
+{%if service.service_name%}
+<a href="{{service.get_absolute_url}}">{{service.service_name}}</a>
+
+   ${{service.price}}
+
+   {%endif%}
+  <hr>
+
+{%endfor%}
+{%endblock%}

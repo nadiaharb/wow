@@ -1,0 +1,13 @@
+{%extends "boost/base.html"%}
+{%block body%}
+{{div_object}}
+<ul>
+{%for service in services%}
+
+    <li><a href="{{service.get_absolute_url}}">{{service.service_name}}</a></li>
+
+{%endfor%}
+    </ul>
+
+
+{%endblock%}
