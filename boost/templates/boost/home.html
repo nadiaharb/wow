@@ -3,7 +3,7 @@
 
 
 {%block body%}
-<img src="{%static 'boosting/img/World-of-Warcraft-1.jpg'%}" alt="WoW">
+
 {%for div in divisions%}
   <h3><a href="{{div.get_absolute_url}}">{{div.division}}</a></h3> <br>
   {{div.description}}

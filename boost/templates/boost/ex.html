@@ -8,18 +8,8 @@
     <link rel="stylesheet" href="{% static 'boosting/styles.css' %}">
    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
- <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-   -->
-    <script src="https://kit.fontawesome.com/4fc72316c0.js" crossorigin="anonymous"></script>
-    <script type="text/javascript">
-
-
-     window.addEventListener('scroll',function(){
-     var nav=document.querySelector('nav')
-     nav.classList.toggle('sticky',window.scrollY >0)
-     })
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+     <script type="text/javascript">
          var user='{{request.user}}'
 
 
@@ -56,14 +46,13 @@
 </head>
 <body>
 <nav>
+    <div class="nav-content">
 
+        <div class="logo">
+        <img src="{% static  'boosting/img/logo.png' %}" class="logo">
+        </div>
 
-        <a href="#" class="logo">Wow Boost
-      <!-- <img src="{% static  'boosting/img/logo2.jpg' %}" class="logo">-->
-
-        </a>
-
-          <ul >
+          <ul class="nav-links">
          <li class="searchBox>">
          <form action="{% url 'search'%}" method="get">
           <input type="text" name="q" placeholder="Search" class="searchTxt">
@@ -74,15 +63,15 @@
 
             {% if user.is_authenticated %}
                     <li>
-                        <a  href="#"><strong>{{ user.username }}</strong></a>
+                        <a class="nav-link" href="#"><strong>{{ user.username }}</strong></a>
                     </li>
                     <li>
-                        <a  href="{% url 'logout' %}">Log Out</a>
+                        <a class="nav-link" href="{% url 'logout' %}">Log Out</a>
                     </li>
             {%else%}
 
             <li>
-                        <a  href="{% url 'login' %}">Log In or Sign up</a>
+                        <a class="btn btn-light " href="{% url 'login' %}">Log In or Sign up</a>
                     </li>
 
                 {% endif %}
@@ -98,88 +87,26 @@
         </div>
         -->
         <li>
-             <a href="{% url 'cart' %}"> <button type="button" class="icon-button" id="cd-cart-trigger">
+             <a href="{% url 'cart' %}"> <button type="button" class="icon-button">
               <span class="material-icons">shopping_bag</span>
              <span class="icon-button__badge">{{cartItems}}</span>
              </button></a>
          </li>
           </ul>
-
+    </div>
 </nav>
 
- <section class="banner"></section>
-
-<div class="side-menu">
-
-    <center>
-
-    </center>
-
-    <a href="#" ><span></span></a>
-    <a href="#"><i class="fa fa-user"></i><span>Service</span></a>
-    <a href="#"><i class="fa fa-user"></i><span>Service</span></a>
-    <a href="#"><i class="fa fa-user"></i><span>Service</span></a>
-    <a href="#"><i class="fa fa-user"></i><span>Service</span></a>
-    <a href="#"><i class="fa fa-user"></i><span>Service</span></a>
-    <a href="#"><i class="fa fa-user"></i><span>Service</span></a>
-
-<div class="data"></div>
-
-</div>
 
 
 
     <div class="body">
-
-
-
-
-
-
-
 {% block body %}
+        Apollo 5 was the uncrewed first flight of the Apollo Lunar Module (LM), which would later carry astronauts to the lunar surface. The liftoff of the Saturn IB rocket bearing LM-1 (pictured), the first LM, from Cape Kennedy followed long delays, due in part to setbacks in development of the LM at Grumman, the manufacturer. The original rocket was taken down during the delays and replaced with the one atop which the Apollo 1 fire that killed three astronauts had taken place. LM-1 arrived at the Kennedy Space Center in June 1967; the following months were occupied in testing. After further delays, the countdown began on January 21, 1968, with launch the following day. Although due to programming problems a mission different from that originally planned was executed, the mission was successful enough that a contemplated second uncrewed mission to test the LM was cancelled, advancing NASA's plans to land an astronaut on the Moon by the end of the 1960s, with a safe return to Earth. (Full article...)
     {% endblock %}
 
-<!--cart-->
-<div class="cart-overlay">
-    <div class="cart">
-        <span class="close-cart">
-            <i class="fas fa-window-close"></i>
-        </span>
-        <h2>your cart</h2>
-        <div class="cart-content">
 
-            <div class="cart-item">
-
-                <img src="#" alt="image">
-            <div>
-                <h4>service</h4>
-                <h5>$9</h5>
-                <span class="remove-item">remove</span>
-
-            </div>
-            <div>
-                <i class="fas fa-chevron-up"></i>
-                <p class="item-amount"></p>
-                <i class="fas fa-chevron-down"></i>
-            </div>
-
-            </div>
         </div>
-
-
-    </div>
-
-
-</div>
-
-<!--end of cart-->
-
-
-
-
-
-        <footer>
+<footer>
 
     <ul>
         <li><a href="{% url 'faqs'%}">FAQ</a></li>
@@ -195,11 +122,8 @@ World of Warcraft™ and Blizzard Entertainment are registered trademarks of Bli
     </div>
 
 </footer>
-        </div>
-
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script type="text/javascript" src="{% static 'boosting/main.js' %}"></script>
-
 </body>
 </html>

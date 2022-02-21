@@ -3,9 +3,12 @@
 {{div_object}}
 <ul>
 {%for service in services%}
-
+    <li><img src="{{service.image}}" alt="image"></li>
     <li><a href="{{service.get_absolute_url}}">{{service.service_name}}</a></li>
-
+    <li>${{service.price}}</li>
+     <button data-service="{{service.service_name}}" data-action="add"
+        class="btn btn-outline-secondary add-btn update-cart">
+    Add to Cart</button>
 {%endfor%}
     </ul>
 
