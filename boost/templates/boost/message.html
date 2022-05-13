@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+
+    <title> WOW Boosting Services</title>
+
+</head>
+<body>
+{% for message in messages %}
+{%if message == 'Message successfully sent. We will contact you shortly'%}
+<div class="container-fluid p-0" id="message_alert_container">
+  <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
+
+
+    {{ message }}
+
+  </div>
+</div>
+ {%endif%}
+{% endfor %}
+<script type="text/javascript">
+
+var message_ele = document.getElementById("message_alert_container");
+
+setTimeout(function(){
+   message_ele.style.display = "none";
+}, 3000);
+
+
+</script>
+</body>
+</html>

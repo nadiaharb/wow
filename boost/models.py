@@ -53,7 +53,9 @@ class Services(models.Model):
     description=models.TextField()
     price=models.FloatField()
     slug = models.SlugField(unique=True, blank=True, null=True)
-    image=models.ImageField(blank=True, null=True)
+    image=models.ImageField(upload_to='images', default='img')
+
+
 
 
     def save(self, *args, **kwargs):
@@ -71,6 +73,11 @@ class Services(models.Model):
     def __str__(self):
         return self.service_name
 
+
+
+#class Options(models.Model):
+ #   service=models.ForeignKey(Services, on_delete=models.CASCADE)
+  #  option_price=models.FloatField()
 
 class Order(models.Model):
     customer=models.ForeignKey(Customer, on_delete=models.SET_NULL, blank=True, null=True)

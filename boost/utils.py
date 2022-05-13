@@ -66,10 +66,11 @@ def cartData(request):
         order,created=Order.objects.get_or_create(customer=customer, paid=False)
         items=order.orderitem_set.all()
         cartItems = order.get_cart_items
+        print(order, 'user utils')
     else:
         cookieData = cookieCart(request)
         cartItems = cookieData['cartItems']
         order = cookieData['order']
         items = cookieData['items']
-
+        print(items, 'guest utils')
     return {'cartItems':cartItems, 'order':order, 'items':items}

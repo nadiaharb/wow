@@ -2,15 +2,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Title</title>
+    {%block title%}
+    <title>WoW Boost — World of Warcraft Boosting Services</title>
+    {%endblock%}
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="http://cdn.dcodes.net/2/payment_icons/dc_payment_icons.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.6.0/nouislider.css" integrity="sha512-MKxcSu/LDtbIYHBNAWUQwfB3iVoG9xeMCm32QV5hZ/9lFaQZJVaXfz9aFa0IZExWzCpm7OWvp9zq9gVip/nLMg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'boosting/styles.css' %}">
    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
- <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.1/assets/owl.carousel.min.css">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-   -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.6.0/nouislider.min.js" integrity="sha512-1mDhG//LAjM3pLXCJyaA+4c+h5qmMoTc7IuJyuNNPaakrWT9rVTxICK4tIizf7YwJsXgDC2JP74PGCc7qxLAHw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://kit.fontawesome.com/4fc72316c0.js" crossorigin="anonymous"></script>
     <script type="text/javascript">
 
@@ -55,10 +59,11 @@
 
 </head>
 <body>
-<nav>
+<div class="main">
+<nav id="main-nav">
 
 
-        <a href="#" class="logo">Wow Boost
+        <a href="{% url 'index'%}" class="logo">Wow Boost
       <!-- <img src="{% static  'boosting/img/logo2.jpg' %}" class="logo">-->
 
         </a>
@@ -81,8 +86,8 @@
                     </li>
             {%else%}
 
-            <li>
-                        <a  href="{% url 'login' %}">Log In or Sign up</a>
+            <li class="login">
+                        <a  href="{% url 'login' %}?next={{ request.path|urlencode }}">Log In or Sign up</a>
                     </li>
 
                 {% endif %}
@@ -98,7 +103,8 @@
         </div>
         -->
         <li>
-             <a href="{% url 'cart' %}"> <button type="button" class="icon-button" id="cd-cart-trigger">
+             <a href="{% url 'cart' %}">
+             <button type="button" class="icon-button" >
               <span class="material-icons">shopping_bag</span>
              <span class="icon-button__badge">{{cartItems}}</span>
              </button></a>
@@ -116,13 +122,14 @@
     </center>
 
     <a href="#" ><span></span></a>
-    <a href="#"><i class="fa fa-user"></i><span>Service</span></a>
-    <a href="#"><i class="fa fa-user"></i><span>Service</span></a>
-    <a href="#"><i class="fa fa-user"></i><span>Service</span></a>
-    <a href="#"><i class="fa fa-user"></i><span>Service</span></a>
-    <a href="#"><i class="fa fa-user"></i><span>Service</span></a>
-    <a href="#"><i class="fa fa-user"></i><span>Service</span></a>
+    {%for div in divisions%}
+    <div class="myDIV">
+        <a href="{{div.get_absolute_url}}"><i class="fa-solid fa-angles-right"></i><span>{{div.division}}</span></a>
+    </div>
+    <div class="hide">{{div.division}}</div>
 
+
+     {%endfor%}
 <div class="data"></div>
 
 </div>
@@ -140,53 +147,174 @@
 {% block body %}
     {% endblock %}
 
-<!--cart-->
-<div class="cart-overlay">
-    <div class="cart">
-        <span class="close-cart">
-            <i class="fas fa-window-close"></i>
-        </span>
-        <h2>your cart</h2>
-        <div class="cart-content">
-
-            <div class="cart-item">
-
-                <img src="#" alt="image">
-            <div>
-                <h4>service</h4>
-                <h5>$9</h5>
-                <span class="remove-item">remove</span>
-
-            </div>
-            <div>
-                <i class="fas fa-chevron-up"></i>
-                <p class="item-amount"></p>
-                <i class="fas fa-chevron-down"></i>
-            </div>
-
-            </div>
-        </div>
-
-
-    </div>
 
 
 </div>
+    </div>
+{%block pros%}
+<hr>
+<div class="pros">
+    <ul class="pros_list">
+        <li class="pros_item">
+            <span class="pros_icon"><img  src="{% static  'boosting/img/secure.png' %}" alt="myimg"></span>
+            <span class="pros_txt">Account safety</span>
+        </li>
+        <li class="pros_item">
+            <span class="pros_icon"><img  src="{% static  'boosting/img/result.png' %}" alt="myimg"></span>
+            <span class="pros_txt">Guaranteed results</span>
+        </li>
+        <li class="pros_item">
+            <span class="pros_icon"><img  src="{% static  'boosting/img/q1.png' %}" alt="myimg"></span>
+            <span class="pros_txt">High-quality service</span>
+        </li>
+        <li class="pros_item">
+            <span class="pros_icon"><img  src="{% static  'boosting/img/chat.png' %}" alt="myimg"></span>
+            <span class="pros_txt">24/7 support</span>
+        </li>
+    </ul>
+</div>
+  <div class="container">
 
-<!--end of cart-->
+        <div class="row">
+
+            <div class="col-md-12">
+                <h1 style="text-align:center;">WHAT CLIENTS SAY</h1>
+                <div id="testimonial-slider" class="owl-carousel">
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <div class="testimonial-icon">
+                                <i class="fa fa-quote-left"></i>
+                            </div>
+                            <p class="description">
+                                <span class="name" >JOHN</span>
+                                <br>
+                              <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                           <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span><br>
+
+                               The gang was very effecient and fun to run with.! Made the instance run very smooth and timed in plenty of time left over! I will be running with them again!
+                            </p>
+                        </div>
 
 
+                    </div>
 
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <div class="testimonial-icon">
+                                <i class="fa fa-quote-left"></i>
+                            </div>
+                            <p class="description">
+                                <span class="name" >ARIK</span>
+                                <br>
+                                <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                           <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span><br>
+                                Extremely helpful and fast! :)Top tier support also
+                                The order was done faster than I expected!
 
+                            </p>
+                        </div>
 
-        <footer>
+                    </div>
 
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <div class="testimonial-icon">
+                                <i class="fa fa-quote-left"></i>
+                            </div>
+                            <p class="description">
+                                <span class="name" >ILJA</span>
+                                <br>
+                                <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                           <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span><br>
+                                That guy I played with was really sick! Never had so much fun in arena.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="testimonial">
+                        <div class="testimonial-content">
+                            <div class="testimonial-icon">
+                                <i class="fa fa-quote-left"></i>
+                            </div>
+                            <p class="description">
+                                <span class="name" >ALEX</span>
+                                <br>
+                                <span class="fa fa-star checked"></span>
+                            <span class="fa fa-star checked"></span>
+                           <span class="fa fa-star checked"></span>
+                          <span class="fa fa-star checked"></span>
+                                <span class="fa fa-star checked"></span><br>
+                                I had a great experience with two of the main players, one of them being a BlizzCon champion. Really cool guys, easy to learn and were patient with all of my mistakes. They understand the game, and they even offered me a money back guarantee.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--
+{%block chat %}
+<div class="whatsapp_app" >
+                     <a href="https://wa.me/971526420250?text=I'm%20interested%20in%20your%20boosting%20services%20" target="_blank">
+                         <img  src="{% static  'boosting/img/Whatsapp-icon.png' %}" style="">
+                     </a></div>
+{%endblock%}
+-->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
+<script src='https://cdn.jsdelivr.net/npm/@widgetbot/crate@3' async defer>
+    new Crate({
+        server: '406673327881584640', // Sevy
+        channel: '406673327881584642' // #main
+    })
+</script>
+<script>
+    $(document).ready(function(){
+        $("#testimonial-slider").owlCarousel({
+            items:3,
+            itemsDesktop:[1000,3],
+            itemsDesktopSmall:[980,2],
+            itemsTablet:[768,2],
+            itemsMobile:[650,1],
+            pagination:true,
+            navigation:false,
+            slideSpeed:1000,
+            autoPlay:true
+        });
+    });
+</script>
+  {% endblock %}
+<hr>
+
+<div class="footer">
+    <div class="footer-list">
     <ul>
+        <li style=" text-decoration: underline;">Information</li>
         <li><a href="{% url 'faqs'%}">FAQ</a></li>
         <li><a href="{% url 'terms'%}">Terms and Conditions</a></li>
         <li><a href="{% url 'privacy'%}">Privacy</a></li>
-        <li><a href="{% url 'privacy'%}">Contact us</a></li>
+
     </ul>
+    <ul>
+        <li style=" text-decoration: underline;">Contacts</li>
+        <li><i class="fab fa-discord" style="font-size:"></i>discord123</li>
+        <a href="https://wa.me/971526420250?text=I'm%20interested%20in%20your%20boosting%20services%20" target="_blank">
+        <li><i class="fa-brands fa-whatsapp"></i>whatsapp</li>
+        </a>
+        <li><a href="{% url 'contact'%}">Contact us</a></li>
+    </ul>
+    </div>
     <div >
         <p>
 
@@ -194,8 +322,9 @@ World of Warcraft™ and Blizzard Entertainment are registered trademarks of Bli
     </p>
     </div>
 
-</footer>
-        </div>
+</div>
+
+
 
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

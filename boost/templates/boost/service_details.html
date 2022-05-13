@@ -1,10 +1,214 @@
 {%extends "boost/base.html"%}
+{%load static%}
+{%block title%}
+    <title>{{service_object}}— WOW Boosting Services</title>
+    {%endblock%}
 {%block body%}
-{{service_object}}
-{{service_object.description}}
-<br>
-<button data-service="{{service_object.service_name}}" data-action="add"
-        class="btn btn-outline-secondary add-btn update-cart">
-    Add to Cart</button>
+<div class="links">
+<a href="{% url 'index'%}">Home</a>
+    <i class="fa-solid fa-angle-right"></i>
+<a href="{{service_object.division.get_absolute_url}}">{{service_object.division}}</a>
+</div>
 
+<div class="division">
+<div class="divname"><h1 style="color:#fff">{{service_object}}</h1></div>
+
+</div>
+<div class="cartlike" >
+    <div class="options"><p>Choose Extras</p>
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+           <label class="form-check-label" for="flexCheckDefault">
+              Default checkbox
+           </label>
+        </div>
+        <hr>
+         <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+           <label class="form-check-label" for="flexCheckDefault">
+              Default checkbox
+           </label>
+        </div>
+        <hr>
+         <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+           <label class="form-check-label" for="flexCheckDefault">
+              Default checkbox
+           </label>
+        </div>
+        <hr>
+         <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+           <label class="form-check-label" for="flexCheckDefault">
+              Default checkbox
+           </label>
+        </div>
+        <hr>
+        <br><br><br>
+       <div id="slider"></div>
+
+    </div>
+    <div class="cartblock">
+        <div class="service-price" ><div id="start-price">{{service_object.price|floatformat:2}}</div ></div>
+        <div class="cart_container">
+           <div class="btn"><a href="{%url 'checkout'%}"  data-service="{{service_object.service_name}}" data-action="add" class="add-btn  update-cart">BUY NOW</a></div>
+            <div class="btn"><a href="" data-service="{{service_object.service_name}}" data-action="add" class="add-btn update-cart">ADD TO CART</a></div>
+
+
+            <div class="payment-icons">
+            <span class="dc_payment_icons_glossy_50 dc_visa_glossy" title="Visa"></span>
+            <span class="dc_payment_icons_glossy_50 dc_mastercard_glossy" title="Mastercard"></span>
+            <span class="dc_payment_icons_glossy_50 dc_paypal_glossy" title="PayPal"></span>
+            <span class="dc_payment_icons_glossy_50 dc_maestro_glossy" title="Maestro"></span></div>
+            </div>
+
+        <hr>
+
+
+        <div class="cartblock-footer">
+
+            <div class="subtext">Any questions? Chat with us </div>
+            <div class="">
+
+             <div class="btn">
+
+
+                 <div class="chat-icon" >
+                     <a href="https://wa.me/971526420250?text=I'm%20interested%20in%20your%20boosting%20services%20" target="_blank">
+                         <img  src="{% static  'boosting/img/Whatsapp-icon.png' %}" style="width:120px;height:120px; ">
+                     </a></div>
+
+             </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+
+<div class="servCont">
+
+
+    <div class="imCon">
+
+         <img class="eximg"  src="{{service_object.image.url}}" alt="myimg">
+
+    </div>
+
+    <div class="divdesc" style="font-size:20px">{{service_object.description}}
+    </div>
+
+
+
+
+</div>
+
+<div class="get">
+    <h4>WHAT YOU WILL GET </h4>
+    <ul>
+        <li>x4 Shadowlands Mythic+ Dungeon runs with the best professional boosting teams. We can use your keystone or we can provide one. We can make x1 run per week or provide you with all 4 runs at once!</li>
+         <li>Guaranteed 252 ilvl gear from the Great Vault</li>
+         <li>A chance to get 236 ilvl item from the chest at the end of the dungeon</li>
+         <li>135 Valor Points from each Mythic + dungeon which are required to upgrade the ilvl of epic items, including those from Mythic+ dungeons</li>
+         <li>A chance to obtain Conduits for your Covenant Soulbinds customization</li>
+    </ul>
+</div>
+
+
+<div class="get">
+    <h4>REQUIREMENTS</h4>
+    <ul>
+        <li>A Level 60 Character
+If you would like to level your character in Shadowlands, you can use our Shadowlands leveling service</li>
+        <li>Sharing your login information (if you need account share/piloted option)</li>
+        <li>Active World of Warcraft: Shadowlands subsctiption</li>
+    </ul>
+
+
+</div>
+
+<hr>
+{%block chat %}
+{%endblock%}
+<!--
+<div class="arrows">
+<div class=" arrow ">
+    <div class="inner-arrow">Choose a service </div>
+
+</div>
+<div class="arrow">
+    <div class="inner-arrow">Discuss your order details</div>
+
+</div>
+    <div class="arrow">
+    <div class="inner-arrow">We  appoint the best PRO player</div>
+
+</div>
+    <div class="arrow">
+    <div class="inner-arrow">Your order completed</div>
+
+</div>
+
+
+</div>
+-->
+
+
+
+
+
+
+
+<!--<button data-service="{{service_object.service_name}}" data-action="add"
+        class="btn btn-outline-secondary add-btn update-cart">
+    Add to Cart</button>-->
+<script type="text/javascript">
+//global noUiSlider
+var slider = document.getElementById('slider');
+let startPrice=parseInt(document.getElementById('start-price').innerHTML)
+noUiSlider.create(slider, {
+    start: [0, 0],
+    tooltips: [true, true],
+    step:50,
+    connect: true,
+    range: {
+        'min': 0,
+        'max': 2000
+    }
+
+});
+
+
+slider.noUiSlider.on('change', function(){
+console.log(slider.noUiSlider.get(true))
+let ratingVal=slider.noUiSlider.get(true)
+let startVal=ratingVal[0] //rating from
+let endVal=ratingVal[1]   //rating to
+let ratingPrice
+let stepslow=0
+let stepsmid=0
+let stepshigh=0
+if(endVal<=1000){
+stepslow+=(endVal-startVal)/50
+}else if(startVal<1000 && endVal>1000 && endVal<=1500){
+stepslow+=(1000-startVal)/50
+stepsmid+=(endVal-1000)/50
+}else if(endVal>1500){
+stepshigh+=(endVal-1500)/50
+stepsmid+=(endVal-1000)/50
+stepslow+=(endVal-startVal)/50
+}
+
+
+console.log(startVal, endVal, stepslow, stepsmid,stepshigh)
+
+ratingPrice=((endVal-startVal)/50*0.9)+startPrice
+document.getElementById('start-price').innerHTML=ratingPrice
+
+
+})
+
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.6.0/nouislider.min.js" integrity="sha512-1mDhG//LAjM3pLXCJyaA+4c+h5qmMoTc7IuJyuNNPaakrWT9rVTxICK4tIizf7YwJsXgDC2JP74PGCc7qxLAHw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 {%endblock%}

@@ -3,11 +3,31 @@
 
 
 {%block body%}
+{% include 'boost/message.html' %}
 
-{%for div in divisions%}
-  <h3><a href="{{div.get_absolute_url}}">{{div.division}}</a></h3> <br>
-  {{div.description}}
-  <hr>
+<div class="serviceContainer">
+
+{%for service in services%}
+    <div class="imgcontainer">
+        <a href="{{service.get_absolute_url}}">
+         <img class="serviceImg" src="{{service.image.url}}" alt="myimg">
+        <!-- <img class="serviceImg" src="{{service.image.url}}" alt="myimg">-->
+        <div class="textBlock">
+            <div class="servname"> <span>{{service.service_name}}</span></div>
+            <div class="servprice"><p><span id="from">From</span>${{service.price|floatformat:2}}</p></div>
+            <div class="servbtn">
+                <button
+             class="btn">
+
+
+
+<i class="fa-solid fa-share fa-2x" style="color:#fff"></i></button>
+            </div>
+        </div>
+     </a>
+
+    </div>
 {%endfor%}
+
 
 {%endblock%}

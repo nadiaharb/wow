@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('register/', views.register_view, name='register'),
+    path('signup/', views.signup_view, name='register'),
     path('login/', views.login_view, name='login'),
     path('logout/', views.logout_view, name='logout'),
     path('wow/services/', views.search, name='search'),
@@ -18,6 +18,8 @@ urlpatterns = [
     path('faqs/', views.faqs, name='faqs'),
     path('info/terms/', views.terms, name='terms'),
     path('info/privacy-policy/', views.privacy, name='privacy'),
-path('ex/', views.ex, name='ex'),
+    path('info/contact/', views.contact, name='contact'),
+
+
 
 ]
